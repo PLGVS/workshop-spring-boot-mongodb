@@ -16,7 +16,6 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping(value = "/users")
 public class UserResource {
-
     @Autowired
     private UserService userService;
 
@@ -45,7 +44,6 @@ public class UserResource {
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Void> delete(@PathVariable String id){
         userService.delete(id);
-
         return ResponseEntity.noContent().build();
     }
 
@@ -54,14 +52,12 @@ public class UserResource {
         User obj = userService.fromDTO(objDto);
         obj.setId(id);
         obj = userService.update(obj);
-
         return ResponseEntity.noContent().build();
     }
 
     @GetMapping(value = "/{id}/posts")
     public ResponseEntity<List<Post>> findPosts(@PathVariable String id){
         User obj = userService.findById(id);
-
         return ResponseEntity.ok().body(obj.getPosts());
     }
 }
